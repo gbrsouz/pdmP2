@@ -55,12 +55,7 @@ export default function App() {
             <Text style={{ fontSize: 20 }}>Nome Oficial: {res.name.official}</Text>
 
             <Text style={{ fontSize: 20 }}>Nome - tradução para russo: {res.translations.rus.common}</Text>
-          </View>
-        )}
-
-        {res && (
-          <View style={{ marginTop: 20 }}>
-            <Text style={{ fontSize: 20 }}>Nome Oficial: {res.name.official}</Text>
+            
             <Image
               source={{ uri: res.flags.png }} 
               style={{ width: 120, height: 80 }} 
