@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, Pressable, Image, ScrollView } from 
 import { useEffect, useState } from "react";
 import { Picker } from '@react-native-picker/picker';
 import { Linking } from 'react-native';
+import BordaPais from './BordaPais';
 
 export default function App() {
   const [res, setRes] = useState(null);
@@ -60,6 +61,8 @@ export default function App() {
             source={{ uri: res.flags.png }} 
             style={{ width: 120, height: 80, marginBottom: 30}} 
           />
+
+          <BordaPais pais={res.maps.openStreetMaps}/>
         </View>
       )}
       <StatusBar style="auto" />
