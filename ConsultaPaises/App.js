@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Pressable, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Pressable, Image, ScrollView } from 'react-native';
 import { useEffect, useState } from "react";
 import { Picker } from '@react-native-picker/picker';
+import { Linking } from 'react-native';
 
 export default function App() {
   const [res, setRes] = useState(null);
@@ -20,7 +21,7 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text style={{ marginBottom: 10 }}>Selecione o tipo de pesquisa:</Text>
       <Picker
         selectedValue={tipoBusca}
@@ -49,25 +50,26 @@ export default function App() {
       {res && (
         <View style={{ marginTop: 20, alignItems: 'center' }}>
           <Text style={{ fontSize: 20 }}>Nome Comum: {res.name.common}</Text>
-
           <Text style={{ fontSize: 20 }}>Nome Oficial: {res.name.official}</Text>
-
-          <Text style={{ fontSize: 20 , marginBottom: 30 }}>Nome - tradução para russo: {res.translations.rus.common}</Text>
+          <Text style={{ fontSize: 20 }}>Nome - tradução para russo: {res.translations.rus.common}</Text>
+          <Text style={{ fontSize: 20, marginBottom: 30, color: 'blue' }} onPress={() => Linking.openURL(res.maps.openStreetMaps)}>
+            {res.maps.openStreetMaps}
+          </Text>
 
           <Image
             source={{ uri: res.flags.png }} 
-            style={{ width: 120, height: 80 }} 
+            style={{ width: 120, height: 80, marginBottom: 30}} 
           />
         </View>
       )}
       <StatusBar style="auto" />
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: '#007bff32',
     alignItems: 'center', 
     justifyContent: 'center',
